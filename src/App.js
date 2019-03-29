@@ -7,8 +7,18 @@ class ProductDetail extends React.Component {
     super(props);
     this.state = {
       rooms: [],
-      room: {}
+      room: {},
+      board: [],
+      wordToCheck: ''
     };
+  }
+
+  create = () => {
+    this.sendMessage('createRoom', { roomName: 'test' })
+  }
+
+  checkWord = () => {
+    this.sendMessage('checkWord', { word: this.state.wordToCheck })
   }
 
   handleData = (data) => {
@@ -40,6 +50,20 @@ class ProductDetail extends React.Component {
             {
              rooms.map(room => <div key={room.roomName}><button onClick={() => this.joinRoom(room.roomName)}>{`${room.roomName} (${room.count})`}</button></div>)
             }
+
+          <button onClick={this.create}>Create</button>
+          {
+            this.state.board.map(row => <div>
+              {
+                row.map(item => <span>{item}{'\t'}</span>)
+              }
+              </div>
+              )
+          }
+
+          <input onChange={e => this.setState({ wordToCheck: e.target.value })}/>
+          <button onClick={this.checkWord}>Check</button>
+            
       </div>
     );
   }
