@@ -1,5 +1,28 @@
 import React from 'react';
 import Websocket from 'react-websocket';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import Fab from '@material-ui/core/Fab';
+
+const styles = theme => ({
+  root: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  },
+  Button: {
+    margin: 12
+  },
+  letter: {
+    margin: 8
+  }
+});
 
 class ProductDetail extends React.Component {
 
@@ -8,13 +31,15 @@ class ProductDetail extends React.Component {
     this.state = {
       rooms: [],
       room: {},
-      board: [],
+      board: {
+        board: []
+      },
       wordToCheck: ''
     };
   }
 
   create = () => {
-    this.sendMessage('createRoom', { roomName: 'test' })
+    this.sendMessage('createRoom', {})
   }
 
   checkWord = () => {
@@ -31,42 +56,60 @@ class ProductDetail extends React.Component {
     this.refWebSocket.sendMessage(JSON.stringify({ action, options }));
   }
 
-  joinRoom = roomName => {
-    this.sendMessage('joinRoom', { roomName })
+  joinRoom = () => {
+    this.sendMessage('joinRoom', { sessionID: this.state.wordToCheck })
+  }
+
+  start = () => {
+    this.sendMessage('startGame', {})
   }
 
   render() {
-    const { room, rooms } = this.state
+    // const { room, rooms } = this.state
+    const { classes } = this.props
+
     return (
       <div>
-        <Websocket url='ws://localhost:3200'
-            ref={Websocket => {
-              this.refWebSocket = Websocket;
-            }}
-            onMessage={this.handleData}/>
-            {
-              room.roomName && `${room.roomName} (${room.count})`
-            }
-            {
-             rooms.map(room => <div key={room.roomName}><button onClick={() => this.joinRoom(room.roomName)}>{`${room.roomName} (${room.count})`}</button></div>)
-            }
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <Typography variant="h6" color="inherit">
+              Boggle
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-          <button onClick={this.create}>Create</button>
-          {
-            this.state.board.map(row => <div>
-              {
-                row.map(item => <span>{item}{'\t'}</span>)
-              }
-              </div>
-              )
-          }
-
-          <input onChange={e => this.setState({ wordToCheck: e.target.value })}/>
-          <button onClick={this.checkWord}>Check</button>
+        <Paper className={classes.root} elevation={1}>
+          {this.state.sessionID}
+          <h4>{this.state.error}</h4>
+          <h3>points: {this.state.points}</h3>
+          <br />
+          <Websocket url='ws://localhost:3200'
+              ref={Websocket => {
+                this.refWebSocket = Websocket;
+              }}
+              onMessage={this.handleData}/>
+              
             
+              {              
+              this.state.board.board.map((row, rowI) => <div style={{ width: 400 }}><Grid container key={rowI}>
+                {
+                  row.map((item, i) => <Grid xs><Fab color="primary" style={{marginBottom: 12 }}>{item}{'\t'}</Fab ></Grid>)
+                }
+                </Grid></div>
+                )
+              }
+
+            <TextField variant='outlined' onChange={e => this.setState({ wordToCheck: e.target.value })}/>
+            <br />
+            <Button className={classes.Button} variant="contained" color="primary" onClick={this.checkWord}>Check</Button>
+            <Button className={classes.Button} variant="contained" color="primary" onClick={this.create}>Create</Button>
+            <Button className={classes.Button} variant="contained" color="primary" onClick={this.joinRoom}>Join</Button>
+
+            <Button className={classes.Button} variant="contained" color="primary" onClick={this.start}>Start</Button>
+          </Paper>
       </div>
     );
   }
 }
 
-export default ProductDetail;
+export default withStyles(styles)(ProductDetail);
