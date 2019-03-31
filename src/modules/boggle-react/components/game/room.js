@@ -18,8 +18,8 @@ class Room extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.context.board) {
-            this.props.history.push('/game')
+        if (this.context.readyToPlay) {
+            this.props.history.push('/settings')
         }
     }
 

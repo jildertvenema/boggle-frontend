@@ -39,18 +39,18 @@ const Spinner = styled.div`
   }
 
     @keyframes rotateGlass {
-    40% {
-        -webkit-transform: rotate(0deg);
-    }
-    50% {
-        -webkit-transform: rotate(180deg);
-    }
-    90% {
-        -webkit-transform: rotate(180deg);
-    }
-    100% {
-        -webkit-transform: rotate(0deg);
-    }
+        40% {
+            -webkit-transform: rotate(0deg);
+        }
+        50% {
+            -webkit-transform: rotate(180deg);
+        }
+        90% {
+            -webkit-transform: rotate(180deg);
+        }
+        100% {
+            -webkit-transform: rotate(0deg);
+        }
     }
 `
 
@@ -65,12 +65,11 @@ const Sand = styled.div`
         left: 0;
         right: 0;
         bottom: 50%;
-        /*-webkit-transform: scaleY(50%);*/
         z-index: 10;
-        -webkit-animation: dropsand 4s infinite ease-in-out;
-        }
+        animation: dropsand 4s infinite ease-in-out;
+    }
     
-        &:after {
+    &:after {
         content: "";
         width: 0; 
         height: 0; 
@@ -82,26 +81,26 @@ const Sand = styled.div`
         z-index: 20;
         }
 
-        @keyframes dropsand {
-            0% { 
-                bottom: 50%; 
-            }
-            
-            35% {
-                bottom: 0%;
-                top: 50%;
-            }
-            
-            50% {
-                bottom: 0%;
-                top: 50%;
-            }
-            
-            85% {
-                top: 0;
-                bottom: 50%; 
-            }
+    @keyframes dropsand {
+        0% { 
+            bottom: 50%; 
         }
+        
+        35% {
+            bottom: 0%;
+            top: 50%;
+        }
+        
+        50% {
+            bottom: 0%;
+            top: 50%;
+        }
+        
+        85% {
+            top: 0;
+            bottom: 50%; 
+        }
+    }
 `
 
 

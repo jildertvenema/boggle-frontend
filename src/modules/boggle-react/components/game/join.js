@@ -17,8 +17,8 @@ class Join extends React.Component {
     }
 
     componentDidUpdate () {
-        if (this.context.board) {
-            this.props.history.push('/game')
+        if (this.context.readyToPlay) {
+            this.props.history.push('/settings')
         }
     }
 
@@ -27,7 +27,6 @@ class Join extends React.Component {
         const { actions } = this.context
         if (gameId) {
             actions.joinSession(gameId)
-            actions.startGame()
         }
     }
 

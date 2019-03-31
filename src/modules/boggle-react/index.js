@@ -14,13 +14,19 @@ class BoggleProvider extends React.Component {
         super()
         this.boggle = {}
     }
-    state = {
+
+    initialState = {  
         points: 0,
         connected: false,
-        selectedLetters: []
+        selectedLetters: [],
+        pointsOpponent: 0,
+        readyToPlay: false
     }
 
+    state = this.initialState
+
     componentDidMount() {
+        this.setState(this.initialState)
         this.boggle = new Boggle(this.onMessage, this.setState({ connected: true }), console.log)
     }
 
@@ -38,6 +44,7 @@ class BoggleProvider extends React.Component {
 
     render() {
         const { connected } = this.state
+        console.log(connected)
         return (
             <BoggleContext.Provider value={{
                 ...this.state,

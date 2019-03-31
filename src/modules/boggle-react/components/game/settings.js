@@ -1,0 +1,67 @@
+import React from 'react'
+
+import BoggleContext from '../../context'
+
+import { withRouter } from 'react-router'
+
+import { Typography, Grid } from '@material-ui/core'
+
+import Button from '../page/button'
+import Loader from '../page/loader'
+import TextField from '../page/text-field'
+
+class Room extends React.Component {
+    static contextType = BoggleContext
+    
+    componentDidMount() {
+        if (!this.context.sessionID || !this.context.readyToPlay) {
+            this.props.history.push('/')
+        }
+    }
+
+    state = {
+        totalRounds: this.context.totalRounds,
+        playTime: this.context.playTime
+    }
+
+    handleChange = (key, value) => {
+        this.setState({ [key]: value })
+    }
+
+    componentDidUpdate() {
+        if (this.context.opponentDisconnected) {
+            this.props.history.push('/disconnected')
+        }
+        if (this.context.gameStarted) {
+            this.props.history.push('/game')
+        }
+    }
+
+    render() {
+        const { sessionID, playerType } = this.context
+        const { totalRounds, playTime } = this.state
+        
+        console.log(this.context)
+
+        const isHost = playerType === 'host'
+
+        return (
+            <div>
+                <Typography variant='h2' gutterBottom >Game settings</Typography>
+                <TextField InputProps={{ inputProps: { min: 20, max: 120 } }} type='number' label='Round play time' value={playTime} onChange={(e) => this.handleChange('playTime', e.target.value)} />
+                <TextField InputProps={{ inputProps: { min: 1, max: 10 } }} type='number' label='Total rounds' value={totalRounds} onChange={(e) => this.handleChange('totalRounds', e.target.value)} />
+
+                {
+                    isHost && <Grid container direction='row' justify='flex-end'>
+                        <Grid item>
+                            <Button onClick={this.context.actions.startGame}>Start</Button>
+                        </Grid>
+                    </Grid>
+                }
+
+            </div>
+        )
+    }
+}
+
+export default withRouter(Room)

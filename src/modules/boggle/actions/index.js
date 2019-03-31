@@ -29,3 +29,11 @@ export const selectedLetters = positions => ({
     }
 })
 
+export const finishGame = () =>({
+    action: 'finishGame'
+})
+
+export const getScores = () =>({
+    action: 'getScores'
+})
+

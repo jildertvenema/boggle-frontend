@@ -2,12 +2,13 @@ import React, { Fragment } from 'react'
 
 import BoggleContext from '../../context'
 
-import { Typography, Grid } from '@material-ui/core'
+import { Typography, Grid, Divider } from '@material-ui/core'
 
 import Board from './board'
 import Timer from './timer'
+import WordList from './word-list'
 
-import { arrayContainsPoint } from '../../helpers'
+import { arrayContainsPoint, getS } from '../../helpers'
 
 import { withRouter } from 'react-router'
 
@@ -51,20 +52,38 @@ class Join extends React.Component {
         this.setState({ selected })
     }
 
+    clearLetters = () => {
+        this.context.actions.selectedLetters([])
+        this.setState({ selected: [] })
+    }
+
     componentDidUpdate () {
         if (this.context.points !== this.prevPoints) {
             this.prevPoints = this.context.points
             this.setState({ selected: [] })
         }
+        if (this.context.opponentDisconnected) {
+            this.props.history.push('/disconnected')
+        }
+        if (!this.context.gameStarted) {
+            this.props.history.push('/results')
+        }
+    }
+
+    checkWord = word => {
+        this.context.actions.checkWord(word)
+        this.clearLetters()
     }
 
     render() {
         const { gameId, selected } = this.state
-        const { actions, board, points, playerType, selectedLetters } = this.context
+        const { actions, board, playerType, selectedLetters } = this.context
 
         if (!board) {
             return <Loader />
         }
+
+        console.log(this.context)
         
         const yourTurn = playerType === board.currentTurn
 
@@ -76,28 +95,28 @@ class Join extends React.Component {
                {
                    !yourTurn && <Blocker />
                }
-                <Typography variant='h4'>{points} points</Typography>
                 <Typography variant='h4'>{yourTurn ? `It's your turn!` : `Please wait for your opponent..`}</Typography>
 
                 {
-                    endTime && <Timer endTime={endTime}/>
+                    endTime && <Timer endTime={endTime} onFinish={console.log} />
                 }
 
 
                 <Board onSelect={this.onSelect} selected={yourTurn ? selected : selectedLetters} />
 
-                <Typography variant='h3'>{word}</Typography>
+                <Typography style={{ height: 50 }} variant='h3'>{word}</Typography>
 
                 {
                     yourTurn && <Grid container direction='row' justify='flex-end' spacing={8}>
                         <Grid item>
-                            <Button color='secondary' onClick={() => actions.checkWord(word)}>Check</Button>
+                            <Button color='secondary' onClick={() => this.checkWord(word)}>Check</Button>
                         </Grid>
                         <Grid item>
-                            <Button onClick={() => this.setState({ selected: [] })}>Clear</Button>
+                            <Button onClick={this.clearLetters}>Clear</Button>
                         </Grid>
                     </Grid>
                 }
+                <WordList/>
             </Fragment>
         )
     }

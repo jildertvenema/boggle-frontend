@@ -1,3 +1,3 @@
 export default {
-    url: 'ws://localhost:3200'
+    url: 'ws:localhost:1337'
 }
