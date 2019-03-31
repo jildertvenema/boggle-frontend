@@ -103,7 +103,7 @@ class Join extends React.Component {
                {
                    !yourTurn && <Blocker />
                }
-                <Typography variant='h4'>{yourTurn ? `It's your turn!` : `Please wait for your opponent..`}</Typography>
+                <Typography style={{ maxWidth: 310 }} variant='h4'>{yourTurn ? `It's your turn!` : `Please wait for your opponent..`}</Typography>
 
                 {
                     endTime && <Timer endTime={endTime} onFinish={console.log} />

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router'
 
 import { Typography } from '@material-ui/core'
 
-import Loader from '../page/loader'
+import Gif, { Waiting } from '../page/gif';
 
 class Room extends React.Component {
     static contextType = BoggleContext
@@ -29,7 +29,7 @@ class Room extends React.Component {
             <div>
                 <Typography variant='h2' gutterBottom >{sessionID}</Typography>
                 <Typography variant='headline' gutterBottom >Give this code to your friend, he knows what to do..</Typography>
-                <Loader />
+                <Gif src={Waiting} />
             </div>
         )
     }

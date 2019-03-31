@@ -13,6 +13,7 @@ import { arrayContainsPoint, pointsTouch } from '../../helpers'
 const Letter = styled(button)`
     min-width: 50px!important;
     max-width: 50px;
+    margin-top: 5px;
     
     h1 {
         color: #ffffff;
@@ -22,6 +23,8 @@ const Letter = styled(button)`
 const Container = styled.div`
     margin-top: 12px;
     margin-bottom: 12px;
+    width: 300px;
+    margin:  0 auto;
 `
 
 class Board extends React.Component {

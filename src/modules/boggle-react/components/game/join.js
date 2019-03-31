@@ -8,6 +8,7 @@ import { withRouter } from 'react-router'
 
 import TextField from '../page/text-field'
 import Button from '../page/button'
+import Gif, { Secret } from '../page/gif'
 
 class Join extends React.Component {
     static contextType = BoggleContext
@@ -35,6 +36,7 @@ class Join extends React.Component {
         return (
            <Fragment>
                <Typography variant='headline'>Ask your friend for a secret code..</Typography>
+               <Gif src={Secret} />
                <TextField
                     autoFocus
                     label='Game id'

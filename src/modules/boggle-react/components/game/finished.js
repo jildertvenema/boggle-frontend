@@ -9,6 +9,7 @@ import { withRouter } from 'react-router'
 import { getWordGrid } from './word-list'
 
 import withRedirectIfNoSession from '../../hoc/with-redirect-if-no-session'
+import Gif, { Draw, Win, Lose } from '../page/gif'
 
 class Finished extends React.Component {
     static contextType = BoggleContext
@@ -24,6 +25,9 @@ class Finished extends React.Component {
                 <Typography variant='display2' gutterBottom >{tie ? `It's a tie!` : win ? 'You have won!' : 'You have lost..'}</Typography>
 
                 <Typography variant='display1' gutterBottom >{points} points</Typography>
+
+                <Gif src={tie ? Draw : win ? Win : Lose}/>
+
                 <Grid container spacing={8}>
                     {
                         board.previousRounds.filter(round => round.playerType === playerType).map(round => {
