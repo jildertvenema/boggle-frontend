@@ -2,6 +2,7 @@
   "name": "boggle-frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://abgewaschen.tk/boggle",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "react": "^16.8.5",
