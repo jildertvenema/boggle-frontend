@@ -11,7 +11,9 @@ import { arrayContainsPoint, pointsTouch } from '../../helpers'
 
 
 const Letter = styled(button)`
-    width: 84px;
+    min-width: 50px!important;
+    max-width: 50px;
+    
     h1 {
         color: #ffffff;
     }
@@ -44,7 +46,7 @@ class Board extends React.Component {
                                             onClick={() => this.props.onSelect({x, y})}
                                             disabled={disabled}
                                             >
-                                            <Typography variant='display3'>{item}</Typography>
+                                            <Typography variant='display1'>{item}</Typography>
                                         </Letter>
                                     </Grid>
                                 })

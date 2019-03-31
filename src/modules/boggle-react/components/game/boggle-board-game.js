@@ -35,13 +35,16 @@ class Join extends React.Component {
         if (!this.context.board) {
             this.props.history.push('/')
         }
+        this.context.actions.selectedLetters([])
     }
 
     onSelect = pos => {
 
         let selected = []
 
-        if (arrayContainsPoint(this.state.selected, pos)) {
+        if (this.state.selected.length === 0 ) {
+            selected = [pos]
+        } else if (arrayContainsPoint(this.state.selected, pos)) {
             selected = this.state.selected.slice(0, this.state.selected.length - 1)
         } else {
             selected = this.state.selected.concat(pos)
@@ -77,7 +80,7 @@ class Join extends React.Component {
 
     render() {
         const { gameId, selected } = this.state
-        const { actions, board, playerType, selectedLetters } = this.context
+        const { actions, board, playerType } = this.context
 
         if (!board) {
             return <Loader />
@@ -88,7 +91,12 @@ class Join extends React.Component {
         const yourTurn = playerType === board.currentTurn
 
         const endTime = board.endTime
-        const word = (!yourTurn ? selectedLetters : selected).map(item => board.board[item.x][item.y]).join('')
+
+        const selectedLetters = !yourTurn ? this.context.selectedLetters : selected
+
+        console.log(selectedLetters)
+
+        const word = selectedLetters.map(item => board.board[item.x][item.y]).join('')
 
         return (
            <Fragment>
@@ -102,7 +110,7 @@ class Join extends React.Component {
                 }
 
 
-                <Board onSelect={this.onSelect} selected={yourTurn ? selected : selectedLetters} />
+                <Board onSelect={this.onSelect} selected={selectedLetters} />
 
                 <Typography style={{ height: 50 }} variant='h3'>{word}</Typography>
 
@@ -116,7 +124,7 @@ class Join extends React.Component {
                         </Grid>
                     </Grid>
                 }
-                <WordList/>
+                <WordList />
             </Fragment>
         )
     }

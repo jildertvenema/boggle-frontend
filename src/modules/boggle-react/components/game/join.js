@@ -26,7 +26,7 @@ class Join extends React.Component {
         const { gameId } = this.state
         const { actions } = this.context
         if (gameId) {
-            actions.joinSession(gameId)
+            actions.joinSession(gameId.toLowerCase())
         }
     }
 

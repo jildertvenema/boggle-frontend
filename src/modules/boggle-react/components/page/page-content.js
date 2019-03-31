@@ -8,6 +8,8 @@ const Container = styled.div`
 
 const Content = styled.div`
     display: inline-block;
+    max-width: 92%;
+    margin: 0 auto;
 `
 
 export default ({ children }) => <Container>
