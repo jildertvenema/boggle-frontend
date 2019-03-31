@@ -15,7 +15,7 @@ import { Card, CardContent } from '@material-ui/core'
 class Game extends React.Component {
     render() {
         return (
-            <Router>
+            <Router basename='/boggle'>
                 <Card>
                     <CardContent>
                         <Route path='/' exact component={HostJoinChoice} />
