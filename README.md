@@ -1,5 +1,5 @@
 
-## Live demo
+Live demo
 # [http://abgewaschen.tk/boggle](http://abgewaschen.tk/boggle)
 
 
