@@ -36,6 +36,7 @@ class Join extends React.Component {
             this.props.history.push('/')
         }
         this.context.actions.selectedLetters([])
+        this.setState({ selected: [] })
     }
 
     onSelect = pos => {

@@ -8,6 +8,7 @@ import Disconnected from '../page/disconnected'
 import Settings from './settings'
 import Results from './results'
 import Finished from './finished'
+import Scores from '../scores'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Card, CardContent } from '@material-ui/core'
@@ -26,6 +27,7 @@ class Game extends React.Component {
                         <Route path='/results' exact component={Results} />
                         <Route path='/finish' exact component={Finished} />
                         <Route path='/disconnected' exact component={Disconnected} />
+                        <Route path='/scores' exact component={Scores} />
                     </CardContent>
                 </Card>
             </Router>

@@ -55,7 +55,6 @@ class Results extends React.Component {
         return (
             <Fragment>
                 <Typography variant='headline' gutterBottom >{yourTurn ? 'Your' : 'Your opponents'} results of round {board.currentRound}</Typography>
-                <WordList fullHeight/>
                 {
                     !yourTurn && <Grid container direction='row' justify='flex-end' spacing={8}>
                         <Grid item>
@@ -65,6 +64,7 @@ class Results extends React.Component {
                         </Grid>
                     </Grid>
                 }
+                <WordList fullHeight/>
             </Fragment>
         )
     }

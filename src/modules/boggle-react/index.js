@@ -27,7 +27,7 @@ class BoggleProvider extends React.Component {
 
     componentDidMount() {
         this.setState(this.initialState)
-        this.boggle = new Boggle(this.onMessage, this.setState({ connected: true }), console.log)
+        this.boggle = new Boggle(this.onMessage, () => this.setState({ connected: true }), console.log)
     }
 
     onMessage = data => {
@@ -44,7 +44,6 @@ class BoggleProvider extends React.Component {
 
     render() {
         const { connected } = this.state
-        console.log(connected)
         return (
             <BoggleContext.Provider value={{
                 ...this.state,

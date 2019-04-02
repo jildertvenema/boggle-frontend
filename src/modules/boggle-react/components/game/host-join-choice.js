@@ -24,6 +24,9 @@ class HostJoin extends React.Component {
                 <Typography variant='headline' gutterBottom >Do you want to host or join a game?</Typography>
                 <HourGlass />
                 <Grid container spacing={8}>
+                    <Grid item xs={12}>
+                        <Button onClick={() => this.props.history.push('/scores')}>Score board</Button>
+                    </Grid>
                     <Grid item xs={6}>
                         <Button onClick={() => actions.createSession()}>Host game</Button>
                     </Grid>
