@@ -26,7 +26,7 @@ class Timer extends React.Component {
     render() {
         const { timeLeft } = this.state
         return (
-            <Typography variant='h4'>{Math.max(timeLeft, 0)} seconds left</Typography>
+            <Typography variant='h4' style={{ marginBottom: 12 }}>{Math.max(timeLeft, 0)} seconds left</Typography>
         )
     }
 }

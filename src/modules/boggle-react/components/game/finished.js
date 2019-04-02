@@ -36,7 +36,7 @@ class Finished extends React.Component {
                     }
                 </Grid>
 
-                <Grid container direction='row' justify='flex-end' spacing={8}>
+                <Grid container direction='row' justify='flex-end' spacing={8} style={{ marginTop: 12 }}>
                         <Grid item>
                             <Button onClick={() => this.props.history.push('/scores')}>To score board</Button>
                         </Grid>

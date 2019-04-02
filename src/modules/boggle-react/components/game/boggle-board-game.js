@@ -112,10 +112,10 @@ class Join extends React.Component {
 
                 <Board onSelect={this.onSelect} selected={selectedLetters} />
 
-                <Typography style={{ height: 50 }} variant='h3'>{word}</Typography>
+                <Typography style={{ height: 50, wordBreak: 'break-all', margin: 8 }} variant='h3'>{word}</Typography>
 
                 {
-                    yourTurn && <Grid container direction='row' justify='flex-end' spacing={8}>
+                    yourTurn && <Grid container direction='row' justify='flex-end' spacing={8} style={{ marginBottom: 12 }}>
                         <Grid item>
                             <Button color='secondary' onClick={() => this.checkWord(word)}>Check</Button>
                         </Grid>

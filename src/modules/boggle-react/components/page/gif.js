@@ -9,7 +9,7 @@ export const Waiting = random(['LXHJRRjnviw7e', 'tXL4FHPSnVJ0A', 'A6YO96sBmr1te'
 
 export const Secret = random(['ejP8zPAorQPYs', '26FL7sQXG1oT6qBy0'])
 
-export const Lose = random(['sRJ3wPAyIxICA', '3o7TKnrXco2SC0XM1q', 'gXhBZfzijya76', 'atbiDI1fXpYUU'])
+export const Lose = random(['sRJ3wPAyIxICA', '3o7TKnrXco2SC0XM1q', 'gXhBZfzijya76', 'atbiDI1fXpYUU', 'rKj0oXtnMQNwY'])
 
 export const Win = random(['4jc0C6sRsKcFO', 'b09xElu8in7Lq', '3fk9lvhoApWww', 'eHxnl41nTrY4w'])
 

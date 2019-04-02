@@ -13,3 +13,5 @@ export const pointsTouch = (a, b) => {
 export const pointTouchesAny = (p, xs) => xs.some(item => pointsTouch(item, p))
 
 export const getS = xs => xs === 1 ? '' : 's'
+
+export const isMobile = () => window.innerWidth <= 500

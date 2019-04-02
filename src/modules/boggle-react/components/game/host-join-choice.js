@@ -21,13 +21,13 @@ class HostJoin extends React.Component {
         const actions = this.context.actions
         return (
             <Fragment>
-                <Typography variant='display2' gutterBottom >Do you want to host or join a game?</Typography>
+                <Typography variant='headline' gutterBottom >Do you want to host or join a game?</Typography>
                 <HourGlass />
-                <Grid container direction='row' justify='flex-end' spacing={8}>
-                    <Grid item>
+                <Grid container spacing={8}>
+                    <Grid item xs={6}>
                         <Button onClick={() => actions.createSession()}>Host game</Button>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={6}>
                         <Button  onClick={() => this.props.history.push('/join')}>Join game</Button>
                     </Grid>
                 </Grid>
