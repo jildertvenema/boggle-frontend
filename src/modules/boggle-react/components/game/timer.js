@@ -33,7 +33,7 @@ class Timer extends React.Component {
 }
 
 Timer.propTypes = {
-  endTime: PropTypes.string,
+  endTime: PropTypes.number,
   onFinish: PropTypes.func
 }
 

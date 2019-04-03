@@ -6,19 +6,9 @@ import BoggleContext from '../../context'
 import styled from 'styled-components'
 
 import { Grid, Typography } from '@material-ui/core'
-import button from '../page/button'
+import Letter from './letter'
 
 import { arrayContainsPoint, pointsTouch } from '../../helpers'
-
-const Letter = styled(button)`
-    min-width: 50px!important;
-    max-width: 50px;
-    margin-top: 5px;
-    
-    h1 {
-        color: #ffffff;
-    }
-`
 
 const Container = styled.div`
     margin-top: 12px;
@@ -27,36 +17,79 @@ const Container = styled.div`
     margin:  0 auto;
 `
 
+const RandomizeLetters = 30;
+const abc = "abcdefghijklmnopqrstuvwxyz"
+
 class Board extends React.Component {
     static contextType = BoggleContext
+
+    state = {
+      random: 0
+    }
+
+    componentDidMount() {
+      this.interval = setInterval(
+        () => this.setState({ random: this.state.random + 1 }),
+        100
+      )
+    }
+  
+    componentDidUpdate() {
+      if (this.state.random >= RandomizeLetters) {
+        clearInterval(this.interval)
+      }
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.interval)
+    }
+
+    getCurrentY = (x, i) => {
+      let current = 0
+      while (i >= 5 && current <= x) {
+        current++
+        i -= 5
+      }
+      return i
+    }
 
     render () {
       const { board } = this.context
       const { selected } = this.props
       return (
         <Container >
-          {
-            board.board.map((row, x) => (
-              <Grid container spacing={8} key={x}>
-                {
-                row.map((item, y) => {
-                    const selectedItem = arrayContainsPoint(selected, { x, y })
-                    const disabled = selected.length > 0 && !selectedItem && !pointsTouch({ x, y }, selected[selected.length - 1])
+              <div style={{ height: board.board.length * 50}}>
+            {
+              board.board.slice(0, this.state.random / 5).map((row, x) => (
+                <Grid container spacing={8} key={x}>
+                  {
+                  row.slice(0, this.getCurrentY(x, this.state.random))
+                  .map((item, y) => {
+                      const selectedItem = arrayContainsPoint(selected, { x, y })
+                      const disabled = selected.length > 0 && !selectedItem && !pointsTouch({ x, y }, selected[selected.length - 1])
 
-                    return <Grid item xs key={y}>
-                      <Letter
-                        color={selectedItem ? 'secondary' : 'primary'}
-                        onClick={() => this.props.onSelect({ x, y })}
-                        disabled={disabled}
-                            >
-                        <Typography variant='display1'>{item}</Typography>
-                      </Letter>
-                    </Grid>
-                    })
-                }
-              </Grid>
-            ))
-        }
+                      return <Grid item key={y}>
+                        <Letter
+                          color={selectedItem ? 'secondary' : 'primary'}
+                          onClick={() => this.props.onSelect({ x, y })}
+                          disabled={disabled}
+                              >
+                          <Typography variant='display1'>
+                          {this.state.random <
+                            RandomizeLetters -
+                              this.getCurrentY(x, this.state.random)
+                              ? abc[Math.floor(Math.random() * abc.length)]
+                              : item}
+                          </Typography>
+                        </Letter>
+                      </Grid>
+                      })
+                  }
+                </Grid>
+              ))       
+            }
+        
+          </div>
         </Container>
       )
     }
