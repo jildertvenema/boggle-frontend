@@ -14,25 +14,25 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Card, CardContent } from '@material-ui/core'
 
 class Game extends React.Component {
-    render() {
-        return (
-            <Router basename='/boggle'>
-                <Card>
-                    <CardContent>
-                        <Route path='/' exact component={HostJoinChoice} />
-                        <Route path='/room' exact component={WaitRoom} />
-                        <Route path='/join' exact component={JoinRoom} />
-                        <Route path='/game' exact component={BoggleBoardGame} />
-                        <Route path='/settings' exact component={Settings} />
-                        <Route path='/results' exact component={Results} />
-                        <Route path='/finish' exact component={Finished} />
-                        <Route path='/disconnected' exact component={Disconnected} />
-                        <Route path='/scores' exact component={Scores} />
-                    </CardContent>
-                </Card>
-            </Router>
-        )
-    }
+  render () {
+    return (
+      <Router basename='/boggle'>
+        <Card>
+          <CardContent>
+            <Route path='/' exact component={HostJoinChoice} />
+            <Route path='/room' exact component={WaitRoom} />
+            <Route path='/join' exact component={JoinRoom} />
+            <Route path='/game' exact component={BoggleBoardGame} />
+            <Route path='/settings' exact component={Settings} />
+            <Route path='/results' exact component={Results} />
+            <Route path='/finish' exact component={Finished} />
+            <Route path='/disconnected' exact component={Disconnected} />
+            <Route path='/scores' exact component={Scores} />
+          </CardContent>
+        </Card>
+      </Router>
+    )
+  }
 }
 
 export default Game

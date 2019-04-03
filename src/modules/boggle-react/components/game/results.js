@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 
 import BoggleContext from '../../context'
 
@@ -14,60 +15,60 @@ class Results extends React.Component {
     static contextType = BoggleContext
 
     getAction = () => {
-        const { board, actions } = this.context
-        if (board.currentRound < board.totalRounds || board.currentTurn === 'host') {
-            return <Button onClick={() => actions.startGame()}>My turn</Button>
-        } else {
-            return <Button onClick={this.finishGame}>Finish</Button>
-        }
+      const { board, actions } = this.context
+      if (board.currentRound < board.totalRounds || board.currentTurn === 'host') {
+        return <Button onClick={() => actions.startGame()}>My turn</Button>
+      } else {
+        return <Button onClick={this.finishGame}>Finish</Button>
+      }
     }
 
     finishGame = () => {
-        this.context.actions.finishGame()
+      this.context.actions.finishGame()
     }
 
-
     checkRedirect = () => {
-        if (this.context.gameStarted) {
-            this.props.history.push('/game')
-        }
-        if (this.context.gameFinshed) {
-            this.props.history.push('/finish')
-        }
-    } 
+      if (this.context.gameStarted) {
+        this.props.history.push('/game')
+      }
+      if (this.context.gameFinshed) {
+        this.props.history.push('/finish')
+      }
+    }
 
-    componentDidUpdate() {
-        this.checkRedirect()
+    componentDidUpdate () {
+      this.checkRedirect()
     }
 
     componentDidMount () {
-        this.checkRedirect()
+      this.checkRedirect()
     }
 
-    render() {
-        const { sessionID, playerType, board } = this.context
-        
-        console.log(this.context)
+    render () {
+      const { playerType, board } = this.context
 
-        const yourTurn = playerType === board.currentTurn
-        const isHost = playerType === 'host'
+      const yourTurn = playerType === board.currentTurn
 
-        return (
-            <Fragment>
-                <Typography variant='headline' gutterBottom >{yourTurn ? 'Your' : 'Your opponents'} results of round {board.currentRound}</Typography>
+      return (
+        <Fragment>
+          <Typography variant='headline' gutterBottom >{yourTurn ? 'Your' : 'Your opponents'} results of round {board.currentRound}</Typography>
+          {
+            !yourTurn && <Grid container direction='row' justify='flex-end' spacing={8}>
+              <Grid item>
                 {
-                    !yourTurn && <Grid container direction='row' justify='flex-end' spacing={8}>
-                        <Grid item>
-                            {
-                                this.getAction()
-                            }
-                        </Grid>
-                    </Grid>
+                  this.getAction()
                 }
-                <WordList fullHeight/>
-            </Fragment>
-        )
+              </Grid>
+            </Grid>
+          }
+          <WordList fullHeight />
+        </Fragment>
+      )
     }
+}
+
+Results.propTypes = {
+  history: PropTypes.object
 }
 
 export default withRedirectIfNoSession(withRouter(Results))

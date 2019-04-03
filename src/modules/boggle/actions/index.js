@@ -1,39 +1,37 @@
 
 export const joinSession = sessionID => ({
-    action: 'joinRoom',
-    options: { 
-        sessionID
-    }
+  action: 'joinRoom',
+  options: {
+    sessionID
+  }
 })
 
 export const createSession = () => ({
-   action: 'createRoom'
+  action: 'createRoom'
 })
 
-
 export const checkWord = word => ({
-    action: 'checkWord',
-    options: { 
-        word
-    }
+  action: 'checkWord',
+  options: {
+    word
+  }
 })
 
 export const startGame = () => ({
-    action: 'startGame'
+  action: 'startGame'
 })
 
 export const selectedLetters = positions => ({
-    action: 'selectedLetters',
-    options: {
-        positions
-    }
+  action: 'selectedLetters',
+  options: {
+    positions
+  }
 })
 
-export const finishGame = () =>({
-    action: 'finishGame'
+export const finishGame = () => ({
+  action: 'finishGame'
 })
 
-export const getScores = () =>({
-    action: 'getScores'
+export const getScores = () => ({
+  action: 'getScores'
 })
-

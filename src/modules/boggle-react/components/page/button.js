@@ -10,4 +10,4 @@ const StyledButton = styled(Button)`
     }
 `
 
-export default props => <StyledButton variant='contained' color='primary' { ...props }/>
+export default props => <StyledButton variant='contained' color='primary' {...props} />

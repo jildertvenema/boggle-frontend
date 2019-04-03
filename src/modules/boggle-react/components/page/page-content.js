@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -12,8 +13,14 @@ const Content = styled.div`
     margin: 0 auto;
 `
 
-export default ({ children }) => <Container>
-    <Content>
-        {children}
-    </Content>
+const PageContent = ({ children }) => <Container>
+  <Content>
+    {children}
+  </Content>
 </Container>
+
+PageContent.propTypes = {
+  children: PropTypes.node
+}
+
+export default PageContent

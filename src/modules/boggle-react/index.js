@@ -10,52 +10,50 @@ import Game from './components/game'
 import Loader from './components/page/loader'
 
 class BoggleProvider extends React.Component {
-    constructor () {
-        super()
-        this.boggle = {}
-    }
+  constructor () {
+    super()
+    this.boggle = {}
+  }
 
-    initialState = {  
-        points: 0,
-        connected: false,
-        selectedLetters: [],
-        pointsOpponent: 0,
-        readyToPlay: false
+    initialState = {
+      points: 0,
+      connected: false,
+      selectedLetters: [],
+      pointsOpponent: 0,
+      readyToPlay: false
     }
 
     state = this.initialState
 
-    componentDidMount() {
-        this.setState(this.initialState)
-        this.boggle = new Boggle(this.onMessage, () => this.setState({ connected: true }), console.log)
+    componentDidMount () {
+      this.setState(this.initialState)
+      this.boggle = new Boggle(this.onMessage, () => this.setState({ connected: true }), console.log)
     }
 
     onMessage = data => {
-        this.setState(data)
+      this.setState(data)
     }
-
 
     joinGame = () => {
-        this.setState({
-            joinGame: true
-        })
+      this.setState({
+        joinGame: true
+      })
     }
 
-
-    render() {
-        const { connected } = this.state
-        return (
-            <BoggleContext.Provider value={{
+    render () {
+      const { connected } = this.state
+      return (
+        <BoggleContext.Provider value={{
                 ...this.state,
                 actions: this.boggle.actions
             }}>
-                <BasePage>
-                    <PageContent>
-                        { !connected ? <Loader /> : <Game /> }
-                    </PageContent>
-                </BasePage>
-            </BoggleContext.Provider>
-        )
+          <BasePage>
+            <PageContent>
+              { !connected ? <Loader /> : <Game /> }
+            </PageContent>
+          </BasePage>
+        </BoggleContext.Provider>
+      )
     }
 }
 

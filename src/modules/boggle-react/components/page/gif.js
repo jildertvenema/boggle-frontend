@@ -1,9 +1,9 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 
 const random = xs => xs[Math.floor(Math.random() * xs.length)]
 
-export const Leave = random([ 's0FsE5TsEF8g8','ef0zYcOodmbTMQZjkU', 'RHS4uBLwvRNUA','7DzlajZNY5D0I', '3XiQswSmbjBiU'])
+export const Leave = random(['s0FsE5TsEF8g8', 'ef0zYcOodmbTMQZjkU', 'RHS4uBLwvRNUA', '7DzlajZNY5D0I', '3XiQswSmbjBiU'])
 
 export const Waiting = random(['LXHJRRjnviw7e', 'tXL4FHPSnVJ0A', 'A6YO96sBmr1te', 'bkcbX8SqTCXHG'])
 
@@ -15,4 +15,10 @@ export const Win = random(['4jc0C6sRsKcFO', 'b09xElu8in7Lq', '3fk9lvhoApWww', 'e
 
 export const Draw = random(['26gQZVvtZ6TR1EMlW'])
 
-export default props => <img width='100%' src={`https://media.giphy.com/media/${props.src}/giphy.gif`} />
+const Gif = props => <img width='100%' src={`https://media.giphy.com/media/${props.src}/giphy.gif`} />
+
+Gif.propTypes = {
+  src: PropTypes.string
+}
+
+export default Gif

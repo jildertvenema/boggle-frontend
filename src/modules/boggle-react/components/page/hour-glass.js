@@ -2,7 +2,6 @@ import React from 'react'
 
 import styled from 'styled-components'
 
-
 const Spinner = styled.div`
  width: 70px;
   height: 100px;
@@ -22,7 +21,7 @@ const Spinner = styled.div`
     z-index: 30;
     border-top: 50px solid transparent;
     border-bottom: 50px solid transparent;
-	border-left: 30px solid transparent;
+    border-left: 30px solid transparent;
   }
 
   &:after {
@@ -35,7 +34,7 @@ const Spinner = styled.div`
     z-index: 30;
     border-top: 50px solid transparent;
     border-bottom: 50px solid transparent;
-	border-right: 30px solid transparent;
+    border-right: 30px solid transparent;
   }
 
     @keyframes rotateGlass {
@@ -84,16 +83,16 @@ const Sand = styled.div`
         }
 
     @keyframes Gradient {
-		0% {
-			background-position: 0% 50%
-		}
-		50% {
-			background-position: 100% 50%
-		}
-		100% {
-			background-position: 0% 50%
-		}
-	}
+        0% {
+            background-position: 0% 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0% 50%
+        }
+    }
 
     @keyframes dropsand {
         0% { 
@@ -117,5 +116,4 @@ const Sand = styled.div`
     }
 `
 
-
-export default () =><Spinner><Sand /></Spinner>
+export default () => <Spinner><Sand /></Spinner>

@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import BoggleContext from '../../context'
 
@@ -8,7 +9,6 @@ import { Grid, Typography } from '@material-ui/core'
 import button from '../page/button'
 
 import { arrayContainsPoint, pointsTouch } from '../../helpers'
-
 
 const Letter = styled(button)`
     min-width: 50px!important;
@@ -30,36 +30,41 @@ const Container = styled.div`
 class Board extends React.Component {
     static contextType = BoggleContext
 
-    render() {
-        const { board } = this.context
-        const { selected } = this.props
-        return (
-            <Container >
+    render () {
+      const { board } = this.context
+      const { selected } = this.props
+      return (
+        <Container >
+          {
+            board.board.map((row, x) => (
+              <Grid container spacing={8} key={x}>
                 {
-                    board.board.map((row, x) => (
-                        <Grid container spacing={8} key={x}>
-                            {
-                                row.map((item, y) => {
-                                    const selectedItem = arrayContainsPoint(selected, {x, y})
-                                    const disabled = selected.length > 0 && !selectedItem && !pointsTouch({x,y}, selected[selected.length - 1])
+                row.map((item, y) => {
+                    const selectedItem = arrayContainsPoint(selected, { x, y })
+                    const disabled = selected.length > 0 && !selectedItem && !pointsTouch({ x, y }, selected[selected.length - 1])
 
-                                    return <Grid item xs key={y}>
-                                        <Letter 
-                                            color={selectedItem ? 'secondary' : 'primary'}
-                                            onClick={() => this.props.onSelect({x, y})}
-                                            disabled={disabled}
-                                            >
-                                            <Typography variant='display1'>{item}</Typography>
-                                        </Letter>
-                                    </Grid>
-                                })
-                            }
-                        </Grid>
-                    ))
+                    return <Grid item xs key={y}>
+                      <Letter
+                        color={selectedItem ? 'secondary' : 'primary'}
+                        onClick={() => this.props.onSelect({ x, y })}
+                        disabled={disabled}
+                            >
+                        <Typography variant='display1'>{item}</Typography>
+                      </Letter>
+                    </Grid>
+                    })
                 }
-            </Container>
-        )
+              </Grid>
+            ))
+        }
+        </Container>
+      )
     }
+}
+
+Board.propTypes = {
+  onSelect: PropTypes.func,
+  selected: PropTypes.array
 }
 
 export default Board

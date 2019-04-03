@@ -1,3 +1,3 @@
 import WebSocketManager from './web-socket'
 
-export default  WebSocketManager
+export default WebSocketManager
