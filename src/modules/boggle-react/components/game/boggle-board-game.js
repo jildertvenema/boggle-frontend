@@ -47,7 +47,11 @@ class Join extends React.Component {
       if (this.state.selected.length === 0) {
         selected = [pos]
       } else if (index > -1) {
-        selected = this.state.selected.slice(0, index)
+        if (index === 0) {
+          selected = []
+        } else {
+          selected = this.state.selected.slice(0, index)
+        }
       } else {
         selected = this.state.selected.concat(pos)
       }

@@ -29,14 +29,6 @@ class Finished extends React.Component {
 
           <Gif src={tie ? Draw : win ? Win : Lose} />
 
-          <Grid container spacing={8}>
-            {
-                board.previousRounds.filter(round => round.playerType === playerType).map(round => {
-                    getWordGrid(round.guessedWords, round.goodWords)
-                })
-            }
-          </Grid>
-
           <Grid container direction='row' justify='flex-end' spacing={8} style={{ marginTop: 12 }}>
             <Grid item>
               <Button onClick={() => this.props.history.push('/scores')}>To score board</Button>
@@ -44,6 +36,14 @@ class Finished extends React.Component {
             <Grid item>
               <Button onClick={() => this.props.history.push('/')}>Menu</Button>
             </Grid>
+          </Grid>
+
+          <Grid container spacing={8}>
+            {
+              board.previousRounds.filter(round => round.playerType === playerType).map(round =>
+                getWordGrid(round.guessedWords, round.goodWords)
+              )
+            }
           </Grid>
         </Fragment>
       )

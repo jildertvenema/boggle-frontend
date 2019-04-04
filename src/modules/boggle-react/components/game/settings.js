@@ -57,13 +57,15 @@ class Room extends React.Component {
         <div>
           <Typography variant='h2' gutterBottom >Game settings</Typography>
 
-          <TextField
-            autoFocus
-            label='Your name'
-            fullWidth={isMobile()}
-            onChange={e => this.setState({ name: e.target.value })}
-            value={name}
-          />
+          {
+            isHost && <TextField
+              autoFocus
+              label='Your name'
+              fullWidth={isMobile()}
+              onChange={e => this.setState({ name: e.target.value })}
+              value={name}
+              />
+          }
 
           <TextField fullWidth={isMobile()} InputProps={{ inputProps: { min: 20, max: 120 } }} type='number' label='Round play time' value={playTime} onChange={(e) => this.handleChange('playTime', e.target.value)} />
           <TextField fullWidth={isMobile()} InputProps={{ inputProps: { min: 1, max: 10 } }} type='number' label='Total rounds' value={totalRounds} onChange={(e) => this.handleChange('totalRounds', e.target.value)} />
