@@ -68,7 +68,7 @@ class Board extends React.Component {
                       const selectedItem = arrayContainsPoint(selected, { x, y })
                       const disabled = selected.length > 0 && !selectedItem && !pointsTouch({ x, y }, selected[selected.length - 1])
 
-                      return <Grid item key={y}>
+                      return <Grid item key={x * board.board.length + y}>
                         <Letter
                           color={selectedItem ? 'secondary' : 'primary'}
                           onClick={() => this.props.onSelect({ x, y })}
