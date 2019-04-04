@@ -24,7 +24,7 @@ class Room extends React.Component {
                   <Typography variant='headline' gutterBottom >{score.hostName}: {score.host} points</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography variant='headline' gutterBottom >{score.palyerName}: {score.player} points</Typography>
+                  <Typography variant='headline' gutterBottom >{score.playerName}: {score.player} points</Typography>
                 </Grid>
               </Grid>
               <Divider />
