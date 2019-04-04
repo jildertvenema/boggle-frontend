@@ -18,13 +18,13 @@ class Room extends React.Component {
       return (
         <div>
           {
-            scores && scores.map(score => <Fragment>
+            scores && scores.sort((a, b) => Math.max(b.host, b.player) - Math.max(a.host, a.player)).map(score => <Fragment>
               <Grid container spacing={8} style={{ marginTop: 12 }}>
                 <Grid item xs={12}>
-                  <Typography variant='headline' gutterBottom >Host: {score.host} points</Typography>
+                  <Typography variant='headline' gutterBottom >{score.hostName}: {score.host} points</Typography>
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography variant='headline' gutterBottom >Player: {score.player} points</Typography>
+                  <Typography variant='headline' gutterBottom >{score.palyerName}: {score.player} points</Typography>
                 </Grid>
               </Grid>
               <Divider />

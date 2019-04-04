@@ -16,7 +16,8 @@ class Join extends React.Component {
     static contextType = BoggleContext
 
     state = {
-      gameId: ''
+      gameId: '',
+      name: ''
     }
 
     componentDidUpdate () {
@@ -26,21 +27,32 @@ class Join extends React.Component {
     }
 
     onJoin = () => {
-      const { gameId } = this.state
+      const { gameId, name } = this.state
       const { actions } = this.context
+
+      // Set player name
+      actions.setName(name || 'Anonymous boggler')
+
       if (gameId) {
         actions.joinSession(gameId.toLowerCase())
       }
     }
 
     render () {
-      const { gameId } = this.state
+      const { gameId, name } = this.state
       const { history } = this.props
 
       return (
         <Fragment>
           <Typography variant='headline'>Ask your friend for a secret code..</Typography>
           <Gif src={Secret} />
+          <TextField
+            autoFocus
+            label='Your name'
+            fullWidth={isMobile()}
+            onChange={e => this.setState({ name: e.target.value })}
+            value={name}
+          />
           <TextField
             autoFocus
             label='Game id'

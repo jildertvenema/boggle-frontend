@@ -17,8 +17,8 @@ const Container = styled.div`
     margin:  0 auto;
 `
 
-const RandomizeLetters = 30;
-const abc = "abcdefghijklmnopqrstuvwxyz"
+const RandomizeLetters = 30
+const abc = 'abcdefghijklmnopqrstuvwxyz'
 
 class Board extends React.Component {
     static contextType = BoggleContext
@@ -27,20 +27,20 @@ class Board extends React.Component {
       random: 0
     }
 
-    componentDidMount() {
+    componentDidMount () {
       this.interval = setInterval(
         () => this.setState({ random: this.state.random + 1 }),
         100
       )
     }
-  
-    componentDidUpdate() {
+
+    componentDidUpdate () {
       if (this.state.random >= RandomizeLetters) {
         clearInterval(this.interval)
       }
     }
 
-    componentWillUnmount() {
+    componentWillUnmount () {
       clearInterval(this.interval)
     }
 
@@ -58,7 +58,7 @@ class Board extends React.Component {
       const { selected } = this.props
       return (
         <Container >
-              <div style={{ height: board.board.length * 50}}>
+          <div style={{ height: board.board.length * 50 }}>
             {
               board.board.slice(0, this.state.random / 5).map((row, x) => (
                 <Grid container spacing={8} key={x}>
@@ -75,7 +75,7 @@ class Board extends React.Component {
                           disabled={disabled}
                               >
                           <Typography variant='display1'>
-                          {this.state.random <
+                            {this.state.random <
                             RandomizeLetters -
                               this.getCurrentY(x, this.state.random)
                               ? abc[Math.floor(Math.random() * abc.length)]
@@ -86,9 +86,9 @@ class Board extends React.Component {
                       })
                   }
                 </Grid>
-              ))       
+              ))
             }
-        
+
           </div>
         </Container>
       )

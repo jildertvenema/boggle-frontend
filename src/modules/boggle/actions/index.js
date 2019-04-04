@@ -35,3 +35,10 @@ export const finishGame = () => ({
 export const getScores = () => ({
   action: 'getScores'
 })
+
+export const setName = name => ({
+  action: 'setName',
+  options: {
+    name
+  }
+})

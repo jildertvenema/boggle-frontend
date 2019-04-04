@@ -74,6 +74,7 @@ class Join extends React.Component {
       if (this.context.opponentDisconnected) {
         this.props.history.push('/disconnected')
       }
+      // Round finished
       if (!this.context.gameStarted) {
         this.props.history.push('/results')
       }
@@ -86,7 +87,7 @@ class Join extends React.Component {
 
     render () {
       const { selected } = this.state
-      const { board, playerType } = this.context
+      const { board, playerType, opponentName } = this.context
 
       if (!board) {
         return <Loader />
@@ -104,7 +105,7 @@ class Join extends React.Component {
           {
             !yourTurn && <Blocker />
           }
-          <Typography style={{ maxWidth: 310 }} variant='h4'>{yourTurn ? `It's your turn!` : `Please wait for your opponent..`}</Typography>
+          <Typography style={{ maxWidth: 310 }} variant='h4'>{yourTurn ? `It's your turn!` : `Please wait for ${opponentName || 'your opponent'}..`}</Typography>
 
           {
             endTime && <Timer endTime={endTime} onFinish={console.log} />
