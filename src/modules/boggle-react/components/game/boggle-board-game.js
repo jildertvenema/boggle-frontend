@@ -42,10 +42,12 @@ class Join extends React.Component {
     onSelect = pos => {
       let selected = []
 
+      const index = arrayContainsPoint(this.state.selected, pos)
+
       if (this.state.selected.length === 0) {
         selected = [pos]
-      } else if (arrayContainsPoint(this.state.selected, pos)) {
-        selected = this.state.selected.slice(0, this.state.selected.length - 1)
+      } else if (index > -1) {
+        selected = this.state.selected.slice(0, index)
       } else {
         selected = this.state.selected.concat(pos)
       }
