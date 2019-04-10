@@ -23,7 +23,7 @@ class HostJoin extends React.Component {
     }
 
     componentDidMount() {
-       if (this.context.sessionID) {
+       if (this.context.readyToPlay) {
          this.context.resetContext()
        }
     }
