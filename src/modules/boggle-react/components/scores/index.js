@@ -20,7 +20,7 @@ class Room extends React.Component {
       return (
         <div>
           {
-            !scores || scores.length === 0 ? <Loader /> : scores.sort((a, b) => Math.max(b.host, b.player) - Math.max(a.host, a.player)).map((score, i) => <Fragment key={i}>
+            !scores || scores.length === 0 ? <Loader /> : scores.sort((a, b) => Math.max(b.host || 0, b.player || 0) - Math.max(a.host || 0, a.player || 0)).map((score, i) => <Fragment key={i}>
               <Grid container spacing={8} style={{ marginTop: 12 }}>
                 <Grid item xs={12}>
                   <Typography variant='headline' gutterBottom >{score.hostName}: {score.host} point{getS(score.host)}</Typography>

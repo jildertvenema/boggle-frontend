@@ -4,7 +4,7 @@ import * as pureActions from '../actions'
 
 class WebSocketManager {
   constructor (onMessage, onOpen, onClose) {
-    this.websocket = new WebSocket(settings.url)
+    this.websocket = new window.WebSocket(settings.url)
 
     this.websocket.onopen = onOpen
     this.websocket.onclose = onClose
