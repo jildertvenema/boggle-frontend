@@ -3,24 +3,16 @@ import styled from 'styled-components'
 export default styled.div`
     position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
 
-    color: #fff;
-    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
-    background-size: 400% 400%;
-    animation: Gradient 40s ease infinite;
-
-    @keyframes Gradient {
-      0% {
-        background-position: 0% 50%
-      }
-      50% {
-        background-position: 100% 50%
-      }
-      100% {
-        background-position: 0% 50%
-      }
-    }
+  @media screen and (max-width: 500px) {
+    
+    height: 60px;
+    background: lighten(#e73c7e, 10%);
+    background-image: linear-gradient(to bottom, #e73c7e, rgba(0, 0, 0, 0));
+    transform-origin: 50% 48%;
+    border-bottom-left-radius: 43%;
+    border-bottom-right-radius: 43%;
+  }
 `
