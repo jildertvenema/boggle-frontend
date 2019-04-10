@@ -56,7 +56,9 @@ class Join extends React.Component {
         selected = this.state.selected.concat(pos)
       }
 
-      this.context.actions.selectedLetters(selected)
+      if (!this.context.board.singlePlayer) {
+        this.context.actions.selectedLetters(selected)
+      }
 
       this.setState({ selected })
     }
@@ -109,7 +111,7 @@ class Join extends React.Component {
           {
             !yourTurn && <Blocker />
           }
-          <Typography style={{ maxWidth: 310 }} variant='h4'>{yourTurn ? `It's your turn!` : `Please wait for ${opponentName || 'your opponent'}..`}</Typography>
+          <Typography style={{ maxWidth: 310 }} variant='h4'>{yourTurn ? (board.singlePlayer ? `Round ${board.currentRound}!` : `It's your turn!`) : `Please wait for ${opponentName || 'your opponent'}..`}</Typography>
 
           {
             endTime && <Timer endTime={endTime} onFinish={console.log} />
@@ -117,7 +119,7 @@ class Join extends React.Component {
 
           <Board onSelect={this.onSelect} selected={selectedLetters} />
 
-          <Typography style={{ height: 50, wordBreak: 'break-all', margin: 8 }} variant='h3'>{word}</Typography>
+          <Typography style={{ height: 50, wordBreak: 'break-all', margin: 8, marginTop: 40 }} variant='h3'>{word}</Typography>
 
           {
             yourTurn && <Grid container direction='row' justify='flex-end' spacing={8} style={{ marginBottom: 12 }}>

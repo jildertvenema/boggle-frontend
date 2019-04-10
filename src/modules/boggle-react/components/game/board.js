@@ -65,7 +65,7 @@ class Board extends React.Component {
                   {
                   row.slice(0, this.getCurrentY(x, this.state.random))
                   .map((item, y) => {
-                      const selectedItem = arrayContainsPoint(selected, { x, y })
+                      const selectedItem = arrayContainsPoint(selected, { x, y }) > -1
                       const disabled = selected.length > 0 && !selectedItem && !pointsTouch({ x, y }, selected[selected.length - 1])
 
                       return <Grid item key={x * board.board.length + y}>

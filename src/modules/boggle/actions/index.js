@@ -10,6 +10,10 @@ export const createSession = () => ({
   action: 'createRoom'
 })
 
+export const createSinglePlayerSession = () => ({
+  action: 'createSinglePlayerSession'
+})
+
 export const checkWord = word => ({
   action: 'checkWord',
   options: {

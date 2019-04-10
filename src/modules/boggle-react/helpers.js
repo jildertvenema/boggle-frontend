@@ -1,6 +1,6 @@
 export const pointsAreEqual = (a, b) => a.x === b.x && a.y === b.y
 
-export const arrayContainsPoint = (xs, x) => xs.some(item => pointsAreEqual(item, x))
+export const arrayContainsPoint = (xs, x) => xs.findIndex(item => pointsAreEqual(item, x))
 
 export const pointsTouch = (a, b) => {
   const disX = a.x - b.x

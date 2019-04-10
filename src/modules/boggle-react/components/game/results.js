@@ -16,8 +16,8 @@ class Results extends React.Component {
 
     getAction = () => {
       const { board, actions } = this.context
-      if (board.currentRound < board.totalRounds || board.currentTurn === 'host') {
-        return <Button onClick={() => actions.startGame()}>My turn</Button>
+      if (board.currentRound < board.totalRounds || (board.currentTurn === 'host' && !board.singlePlayer)) {
+        return <Button onClick={() => actions.startGame()}>{board.singlePlayer ? 'Next round' : 'My turn'}</Button>
       } else {
         return <Button onClick={this.finishGame}>Finish</Button>
       }
@@ -53,7 +53,7 @@ class Results extends React.Component {
         <Fragment>
           <Typography variant='headline' gutterBottom >{yourTurn ? 'Your' : 'Your opponents'} results of round {board.currentRound}</Typography>
           {
-            !yourTurn && <Grid container direction='row' justify='flex-end' spacing={8}>
+            (!yourTurn || board.singlePlayer) && <Grid container direction='row' justify='flex-end' spacing={8}>
               <Grid item>
                 {
                   this.getAction()
