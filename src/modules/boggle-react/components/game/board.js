@@ -32,7 +32,11 @@ class Board extends React.Component {
         () => this.setState({ random: this.state.random + 1 }),
         100
       )
+      window.onbeforeunload = function () {
+        return "If you reload this page, the game will be stopped"
+      }
     }
+      
 
     componentDidUpdate () {
       if (this.state.random >= RandomizeLetters) {
@@ -42,6 +46,8 @@ class Board extends React.Component {
 
     componentWillUnmount () {
       clearInterval(this.interval)
+
+      window.onbeforeunload = undefined
     }
 
     getCurrentY = (x, i) => {

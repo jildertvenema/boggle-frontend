@@ -40,8 +40,8 @@ class Room extends React.Component {
               {
                 this.getTopThree(sortedScores).map((score, i) => <Fragment>
                   <Grid key={i} item xs={1}/>
-                 <Grid key={i} item xs={5}><Typography style={{ float: 'left' }} variant='headline'>{i === 0 ? '1st. 🏆\t' : i === 1 ? '2nd.🥈\t' : i === 2 ? '3th.  🥉\t' : ''}</Typography></Grid>
-                 <Grid key={i} item xs={3}><Typography style={{ float: 'left' }} variant='headline'>{score.name}</Typography></Grid>
+                 <Grid key={i} item xs={2}><Typography style={{ float: 'left' }} variant='headline'>{i === 0 ? '1st. 🏆\t' : i === 1 ? '2nd.🥈\t' : i === 2 ? '3th.  🥉\t' : ''}</Typography></Grid>
+                 <Grid key={i} item xs={6}><Typography style={{ float: 'left' }} variant='headline'>{score.name}</Typography></Grid>
                  <Grid key={i} item xs={3}><Typography style={{ float: 'left', fontWeight: 'bold' }} variant='title'>{score.points}</Typography></Grid>
                 </Fragment>)
               }
