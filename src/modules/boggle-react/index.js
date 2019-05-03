@@ -25,9 +25,13 @@ class BoggleProvider extends React.Component {
 
     state = this.initialState
 
+    getNewBoggleInstance = () => {
+      return new Boggle(this.onMessage, () => this.setState({ connected: true }), console.log)
+    }
+
     componentDidMount () {
       this.setState(this.initialState)
-      this.boggle = new Boggle(this.onMessage, () => this.setState({ connected: true }), console.log)
+      this.boggle = this.getNewBoggleInstance()
     }
 
     onMessage = data => {
@@ -40,12 +44,18 @@ class BoggleProvider extends React.Component {
       })
     }
 
+    resetContext = () => {
+      this.setState(this.initialState)
+      this.boggle = this.getNewBoggleInstance()
+    }
+
     render () {
       const { connected } = this.state
       return (
         <BoggleContext.Provider value={{
                 ...this.state,
-                actions: this.boggle.actions
+                actions: this.boggle.actions,
+                resetContext: this.resetContext
             }}>
           <BasePage>
             <PageContent>

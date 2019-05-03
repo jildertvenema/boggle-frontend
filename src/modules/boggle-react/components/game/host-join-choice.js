@@ -22,6 +22,12 @@ class HostJoin extends React.Component {
       }
     }
 
+    componentDidMount() {
+       if (this.context.readyToPlay) {
+         this.context.resetContext()
+       }
+    }
+
     render () {
       const actions = this.context.actions
       return (

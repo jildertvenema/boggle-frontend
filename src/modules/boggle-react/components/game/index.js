@@ -10,7 +10,7 @@ import Results from './results'
 import Finished from './finished'
 import Scores from '../scores'
 
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { HashRouter as Router, Route } from 'react-router-dom'
 import { Card, CardContent } from '@material-ui/core'
 
 class Game extends React.Component {
