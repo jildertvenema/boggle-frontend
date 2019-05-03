@@ -11,6 +11,9 @@ body {
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% 400%;
   animation: Gradient 40s ease infinite;
+  
+  // disable refresh chrome
+  overscroll-behavior-y: contain;
 
   @keyframes Gradient {
     0% {
