@@ -12,6 +12,9 @@ import Button from '../page/button'
 import Gif, { Secret } from '../page/gif'
 import { isMobile } from '../../helpers'
 
+import Kahoot from '../../../../files/kahoot.mp3'
+import Sound from '../../../../sound'
+
 class Join extends React.Component {
     static contextType = BoggleContext
 
@@ -29,6 +32,11 @@ class Join extends React.Component {
     onJoin = () => {
       const { gameId, name } = this.state
       const { actions } = this.context
+
+      if (gameId.toLowerCase() === 'kahoot') {
+        var music = new Sound(Kahoot, 100, true);
+        music.start();
+      }
 
       // Set player name
       actions.setName(name || 'Anonymous boggler')
