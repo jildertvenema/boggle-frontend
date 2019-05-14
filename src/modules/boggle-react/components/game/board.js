@@ -13,7 +13,7 @@ import { arrayContainsPoint, pointsTouch } from '../../helpers'
 const Container = styled.div`
     margin-top: 12px;
     margin-bottom: 12px;
-    width: 300px;
+    width: 100%;
     margin:  0 auto;
 `
 
